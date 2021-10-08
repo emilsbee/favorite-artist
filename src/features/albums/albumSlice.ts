@@ -32,7 +32,13 @@ const initialState: AlbumState = {
 }
 
 export const fetchAlbums = createAsyncThunk("albums/fetchAlbums", async () => {
-    const albumsRes = await fetch(`https://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=${process.env.REACT_APP_ARTIST_NAME}&api_key=${process.env.REACT_APP_API_KEY}&format=json&limit=50`)
+    const albumsRes = await fetch(`https://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=${process.env.REACT_APP_ARTIST_NAME}&api_key=${process.env.REACT_APP_API_KEY}&format=json&limit=50`, {
+        method: "GET",
+        headers: {
+            Accept: 'application/json',
+            'User-Agent': 'bernhards@emils.xyz'
+        }
+    })
 
     let albums = await albumsRes.json() as {topalbums:{album: Album[]}}
     console.log(albums)
@@ -41,7 +47,13 @@ export const fetchAlbums = createAsyncThunk("albums/fetchAlbums", async () => {
     albums.topalbums.album = albums.topalbums.album.filter((album:Album) => album.name != null && album.name !== "(null)" && album.mbid)
 
     for (let i = 0; i < albums.topalbums.album.length; i++) {
-        let albumInfoRes = await fetch(`https://musicbrainz.org/ws/2/release/${albums.topalbums.album[i].mbid}?fmt=json`)
+        let albumInfoRes = await fetch(`https://musicbrainz.org/ws/2/release/${albums.topalbums.album[i].mbid}?fmt=json`, {
+            method: "GET",
+            headers: {
+                Accept: 'application/json',
+                'User-Agent': 'bernhards@emils.xyz'
+            }
+        })
         let albumInfo = await albumInfoRes.json() as {date: string}
 
         // since not all albums have a release date, those without are removed
