@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import { RouteComponentProps } from 'react-router';
 
 // Internal imports
-import {fetchTracksForAlbum, stateReset} from "./trackSlice";
+import {fetchTracksForAlbum, stateReset, Track} from "./trackSlice";
 import {AppDispatch, RootState} from "../../app/store";
 import Spinner from "../../components/Spinner";
 import TrackItem from "./TrackItem";
@@ -47,11 +47,19 @@ const TrackList = ({match}: TrackListProps) => {
     if (detailedAlbumStatus === "loading") {
         content = <Spinner/>
     } else if (detailedAlbumStatus === "succeeded") {
-        content = detailedAlbum.tracks.track.map(track => (
-                    <TrackItem track={track} key={track.name}/>
-                ))
 
-
+        if (!detailedAlbum.tracks) {
+            content = <div>This is a single.</div>
+        } else if (detailedAlbum.tracks.track.constructor === Array) {
+            content = detailedAlbum.tracks.track.map(track => (
+                <TrackItem track={track} key={track.name}/>
+            ))
+        } else if (detailedAlbum.tracks.track) {
+            let track = detailedAlbum.tracks.track as unknown as Track
+            content = <TrackItem track={track}/>
+        } else {
+            content = <div></div>
+        }
     } else if (detailedAlbumStatus === "failed") {
         content = <div>{error}</div>
     } else {
