@@ -1,6 +1,7 @@
 // External imports
 import React from "react"
 import styled from "styled-components";
+import {Link} from "react-router-dom"
 
 // Internal imports
 import {Album} from "./albumSlice";
@@ -79,8 +80,8 @@ const AlbumCard = ({album}:AlbumCardProps) => {
                 {album.date}
             </CardDate>
             <CardButtons>
-                <CardButton onClick={() => console.log("runs")}>View</CardButton>
-                <a target={"_blank"} href={album.url}><CardButton onClick={() => console.log("runs")}>Listen</CardButton></a>
+                <Link to={`/${album.name}/tracks`}><CardButton>View</CardButton></Link>
+                <a target={"_blank"} href={album.url}><CardButton>Listen</CardButton></a>
             </CardButtons>
         </Card>
     )

@@ -41,7 +41,7 @@ export const fetchAlbums = createAsyncThunk("albums/fetchAlbums", async () => {
     })
 
     let albums = await albumsRes.json() as {topalbums:{album: Album[]}}
-    console.log(albums)
+
     // Filters albums with names that are null as well as names that are literally (null) and albums without any mbid.
     // mbid is necessary to fetch release date from musicbrainz.
     albums.topalbums.album = albums.topalbums.album.filter((album:Album) => album.name != null && album.name !== "(null)" && album.mbid)
