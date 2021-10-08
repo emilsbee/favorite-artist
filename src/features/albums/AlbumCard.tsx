@@ -42,7 +42,7 @@ const CardButtons = styled.section`
 `
 
 const CardButton = styled.button`
-  background-color: #9999cc;
+  background-color: #966fd6;
   border: none;
   outline: none;
   border-radius: 3px;
@@ -80,7 +80,7 @@ const AlbumCard = ({album}:AlbumCardProps) => {
             </CardDate>
             <CardButtons>
                 <CardButton onClick={() => console.log("runs")}>View</CardButton>
-                <a href={album.url}><CardButton onClick={() => console.log("runs")}>Listen</CardButton></a>
+                <a target={"_blank"} href={album.url}><CardButton onClick={() => console.log("runs")}>Listen</CardButton></a>
             </CardButtons>
         </Card>
     )

@@ -3,7 +3,7 @@ import React, {ReactElement} from "react"
 import {useDispatch, useSelector} from "react-redux";
 
 // Internal imports
-import {RootState} from "../../store/store"
+import {RootState} from "../../app/store"
 import {fetchAlbums} from "./albumSlice";
 import Spinner from "../../components/Spinner";
 import styled from "styled-components";

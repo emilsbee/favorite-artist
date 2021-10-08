@@ -1,18 +1,18 @@
 // External imports
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {Provider} from "react-redux";
 
 // Internal imports
 import './index.css'
 import reportWebVitals from './reportWebVitals';
-import AlbumList from "./features/albums/AlbumList";
-import {Provider} from "react-redux";
-import store from "./store/store"
+import store from "./app/store"
+import AppRouter from "./app/Router";
 
 ReactDOM.render(
     <Provider store={store}>
       <React.StrictMode>
-        <AlbumList />
+        <AppRouter />
       </React.StrictMode>
     </Provider>,
   document.getElementById('root')
