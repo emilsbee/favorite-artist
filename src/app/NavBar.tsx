@@ -41,9 +41,11 @@ const NavBar = () => {
     return (
         <Nav>
             <NavSection>
-                <NavTitle>
-                    The Notorious B.I.G.
-                </NavTitle>
+                <StyledNavLink to={"/"}>
+                    <NavTitle>
+                        {process.env.REACT_APP_ARTIST_NAME}
+                    </NavTitle>
+                </StyledNavLink>
 
                 <NavContent>
                     <NavLinks>
