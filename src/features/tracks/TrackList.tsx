@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import { RouteComponentProps } from 'react-router';
 
 // Internal imports
-import {fetchTracksForAlbum, stateReset, Track} from "./trackSlice";
+import {fetchTracksForAlbum, Track} from "./trackSlice";
 import {AppDispatch, RootState} from "../../app/store";
 import Spinner from "../../components/Spinner";
 import TrackItem from "./TrackItem";

@@ -71,9 +71,7 @@ const trackSlice = createSlice({
     name: "tracks",
     initialState,
     reducers: {
-        stateReset(state) {
-            state = initialState
-        }
+
     },
     extraReducers(builder) {
         builder
@@ -90,7 +88,5 @@ const trackSlice = createSlice({
             })
     }
 })
-
-export const { stateReset } = trackSlice.actions
 
 export default trackSlice.reducer
